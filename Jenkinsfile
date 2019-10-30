@@ -1,3 +1,5 @@
+dev baseVersion = readFile file: 'version.txt'
+
 pipeline {
     agent {
         label 'agent_vkorchuk'
@@ -59,7 +61,6 @@ pipeline {
                 stage ('Nexus_upload') {
                     steps {
                         script {
-                            baseVersion = readFile file: 'version.txt'
                             nexusArtifactUploader artifacts: [[artifactId: 'site-archive', classifier: '${baseVersion}-${BUILD_NUMBER}', file: 'site-archive.tgz', type: 'tgz']], credentialsId: 'student23-jenkins', groupId: 'site-archive', nexusUrl: 'master.jenkins-practice.tk:9443', nexusVersion: 'nexus3', protocol: 'https', repository: 'student23-repo', version: '${baseVersion}-${BUILD_NUMBER}'
                         }
                     }
