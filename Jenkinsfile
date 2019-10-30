@@ -67,10 +67,5 @@ pipeline {
                         }
                     }
         }
-        post {
-                success {
-                    writeFile file: '../deploy_version', text: "${baseVersion}-${BUILD_NUMBER}"
-                }
-        }
     }
 }
