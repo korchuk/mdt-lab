@@ -1,4 +1,4 @@
-dev baseVersion = readFile file: 'version.txt'
+dev baseVersion = readFile file: env.WORKSPACE+'version.txt'
 
 pipeline {
     agent {
