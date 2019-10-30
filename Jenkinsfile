@@ -60,6 +60,7 @@ pipeline {
                     steps {
                         script {
                             def baseVersion = readFile file: 'version.txt'
+                            baseVersion = baseVersion.trim()
                             nexusArtifactUploader artifacts: [[artifactId: 'site-archive', classifier: '', file: 'site-archive.tgz', type: 'tgz']], credentialsId: 'student23-jenkins', groupId: 'site-archive', nexusUrl: 'master.jenkins-practice.tk:9443', nexusVersion: 'nexus3', protocol: 'https', repository: 'student23-repo', version: "${baseVersion}-${BUILD_NUMBER}"
                         }
                     }
